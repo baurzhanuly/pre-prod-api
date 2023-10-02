@@ -7,9 +7,13 @@
   <groupId>com.simplecode</groupId>
   <artifactId>pre-prod-api</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>pre-prod-api</name>
   <url>https://www.example.com</url>
+  <modules>
+    <module>authentication-service</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

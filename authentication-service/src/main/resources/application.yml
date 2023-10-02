@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: authentication-service
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/authentication
+    username: user
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+
+jwt:
+  signing:
+    key:
+      secret: ijbCFLAn5eAIamx2YNgUxFETgjjaFa8F
+  get:
+    token:
+      uri: /authenticate
+  refresh:
+    token:
+      uri: /refresh
+  http:
+    request:
+      header: Authorization
+  token:
+    expiration:
+      in:
+        seconds: 604800
