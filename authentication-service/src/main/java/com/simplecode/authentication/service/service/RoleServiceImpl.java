@@ -1,6 +1,6 @@
 package com.simplecode.authentication.service.service;
 
-import com.simplecode.authentication.service.dto.CreateRoleDto;
+import com.simplecode.authentication.service.dto.RoleDto;
 import com.simplecode.authentication.service.exception.ApiException;
 import com.simplecode.authentication.service.exception.ErrorCode;
 import com.simplecode.authentication.service.model.Role;
@@ -25,17 +25,17 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role createRole(CreateRoleDto createRoleDto) {
-        Optional<Role> roleOptional = roleRepository.findByName(createRoleDto.getName());
+    public Role add(RoleDto roleDto) {
+        Optional<Role> roleOptional = roleRepository.findByName(roleDto.getName());
 
         if (roleOptional.isPresent()) {
             throw new ApiException(ErrorCode.ALREADY_EXISTS, "role already exists");
         }
-        var entity = toEntity(createRoleDto);
+        var entity = toEntity(roleDto);
         return roleRepository.save(entity);
     }
 
-    private Role toEntity(CreateRoleDto dto) {
+    private Role toEntity(RoleDto dto) {
         var role = new Role();
         role.setId(dto.getId());
         role.setName(dto.getName());
