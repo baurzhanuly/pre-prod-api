@@ -27,11 +27,11 @@ public class AuthenticationController {
     @Value("${jwt.http.request.header}")
     private String tokenHeader;
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    private JwtTokenUtil jwtTokenUtil;
+    private final JwtTokenUtil jwtTokenUtil;
 
-    private UserService userService;
+    private final UserService userService;
 
 
     @PostMapping("${jwt.get.token.uri}")
@@ -56,7 +56,7 @@ public class AuthenticationController {
 
         if (jwtTokenUtil.canTokenBeRefreshed(token)) {
             String refreshToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new AuthenticationResponse(token));
+            return ResponseEntity.ok(new AuthenticationResponse(refreshToken));
         } else {
             return ResponseEntity.badRequest().body(null);
         }
