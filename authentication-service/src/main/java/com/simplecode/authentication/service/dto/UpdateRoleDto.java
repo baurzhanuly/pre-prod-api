@@ -3,7 +3,7 @@ package com.simplecode.authentication.service.dto;
 import lombok.Data;
 
 @Data
-public class CreateRoleDto {
+public class UpdateRoleDto extends CreateRoleDto {
 
-    private String name;
+    private Integer id;
 }
